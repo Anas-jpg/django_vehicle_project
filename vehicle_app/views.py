@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import BasicAuthentication
+
 from datetime import datetime
 from .models import Vehicle, Car, Bike
 from .serializers import VehicleSerializer, CarSerializer, BikeSerializer
@@ -9,6 +11,7 @@ from .serializers import VehicleSerializer, CarSerializer, BikeSerializer
 class VehicleViewSet(viewsets.ModelViewSet):
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
+    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
     def retrieve(self, request, *args, **kwargs):
@@ -58,10 +61,12 @@ class VehicleViewSet(viewsets.ModelViewSet):
 class CarViewSet(viewsets.ModelViewSet):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
 
 class BikeViewSet(viewsets.ModelViewSet):
     queryset = Bike.objects.all()
     serializer_class = BikeSerializer
+    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]

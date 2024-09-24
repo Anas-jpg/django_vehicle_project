@@ -41,7 +41,7 @@ class Bike(Vehicle):
     has_gear = models.BooleanField(default=False)
 
     def get_type(self):
-        return f"This is a bike with gears: {self.has_gear}."
+        return f"This is a bike with cool gears: {self.has_gear}."
 
 
 # Custom permission logic inside the model

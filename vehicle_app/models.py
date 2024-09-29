@@ -1,6 +1,7 @@
+# models.py
 from django.db import models
+from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError
-
 
 class Vehicle(models.Model):
     COLOR_CHOICES = [
@@ -10,6 +11,7 @@ class Vehicle(models.Model):
         ('WHITE', 'White'),
     ]
 
+    owner = models.ForeignKey(User, related_name='vehicles', on_delete=models.CASCADE)
     brand = models.CharField(max_length=100)
     vehicle_type = models.CharField(max_length=50)
     color = models.CharField(choices=COLOR_CHOICES, max_length=50)

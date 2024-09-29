@@ -3,9 +3,12 @@ from .models import Vehicle, Car, Bike
 
 
 class VehicleSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')  # Read-only owner field
+    estimated_mileage = serializers.FloatField(read_only=True)  # Ensure it's read-only
+
     class Meta:
         model = Vehicle
-        fields = ['id', 'brand', 'vehicle_type', 'color', 'year']
+        fields = ['id', 'owner', 'brand', 'vehicle_type', 'color', 'year', 'estimated_mileage']
 
     # Custom field validation for 'color'
     def validate_color(self, value):

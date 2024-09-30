@@ -3,8 +3,8 @@ from .models import Vehicle, Car, Bike
 
 
 class VehicleSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')  # Read-only owner field
-    estimated_mileage = serializers.FloatField(read_only=True)  # Ensure it's read-only
+    owner = serializers.ReadOnlyField(source='owner.username')
+    estimated_mileage = serializers.FloatField(read_only=True)
 
     class Meta:
         model = Vehicle

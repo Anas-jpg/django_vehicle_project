@@ -1,0 +1,66 @@
+<!-- vehicles/templates/vehicles/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vehicles List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Owner</th>
+                <th>Brand</th>
+                <th>Vehicle Type</th>
+                <th>Color</th>
+                <th>Year</th>
+                <th>Estimated Mileage</th>
+                <th>Specific Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.id }}</td>
+                <td>{{ vehicle.owner.username }}</td>
+                <td>{{ vehicle.brand }}</td>
+                <td>{{ vehicle.vehicle_type }}</td>
+                <td>{{ vehicle.color }}</td>
+                <td>{{ vehicle.year }}</td>
+                <td>{{ vehicle.estimated_mileage }}</td>
+                <td>
+                    {% if vehicle.vehicle_type == 'Car' %}
+                        Number of Doors: {{ vehicle.car.num_doors }}
+                    {% elif vehicle.vehicle_type == 'Bike' %}
+                        Has Gear: {{ vehicle.bike.has_gear }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No vehicles available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
